@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="460" viewBox="0 0 1200 460" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <title>How Flick connects an iPhone to a Mac</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#FF6B00"/>
+    </marker>
+    <marker id="arrow-dim" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#7A7A7A"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="460" rx="28" fill="#0A0A0A"/>
+
+  <!-- iPhone -->
+  <rect x="60" y="120" width="250" height="220" rx="26" fill="#141414" stroke="#2C2C2C" stroke-width="1.5"/>
+  <rect x="160" y="140" width="50" height="7" rx="3.5" fill="#2C2C2C"/>
+  <text x="185" y="215" text-anchor="middle" font-size="30" font-weight="700" fill="#FFFFFF">iPhone</text>
+  <text x="185" y="250" text-anchor="middle" font-size="19" fill="#9A9A9A">Flick app</text>
+  <circle cx="185" cy="295" r="9" fill="#FF6B00"/>
+
+  <!-- Mac (always) -->
+  <rect x="820" y="60" width="320" height="150" rx="22" fill="#141414" stroke="#2C2C2C" stroke-width="1.5"/>
+  <text x="980" y="122" text-anchor="middle" font-size="30" font-weight="700" fill="#FFFFFF">Mac</text>
+  <text x="980" y="158" text-anchor="middle" font-size="19" fill="#9A9A9A">nothing to install</text>
+
+  <!-- Flick for Mac (optional) -->
+  <rect x="820" y="270" width="320" height="150" rx="22" fill="#141414" stroke="#2C2C2C" stroke-width="1.5" stroke-dasharray="7 6"/>
+  <text x="980" y="324" text-anchor="middle" font-size="26" font-weight="700" fill="#FFFFFF">Flick for Mac</text>
+  <text x="980" y="356" text-anchor="middle" font-size="18" fill="#9A9A9A">optional menu bar app</text>
+  <text x="980" y="386" text-anchor="middle" font-size="16" fill="#6E6E6E">live screen · Claude Code · anywhere</text>
+
+  <!-- Bluetooth link -->
+  <path d="M312 190 C 520 150, 620 135, 812 135" fill="none" stroke="#FF6B00" stroke-width="3.5" marker-end="url(#arrow)"/>
+  <text x="560" y="88" text-anchor="middle" font-size="19" font-weight="600" fill="#FFFFFF">Bluetooth keyboard + mouse</text>
+  <text x="560" y="114" text-anchor="middle" font-size="16" fill="#8A8A8A">standard HID: macOS sees a normal device</text>
+
+  <!-- Network link -->
+  <path d="M312 280 C 520 320, 620 345, 812 345" fill="none" stroke="#7A7A7A" stroke-width="2.5" stroke-dasharray="9 7" marker-end="url(#arrow-dim)"/>
+  <text x="560" y="372" text-anchor="middle" font-size="19" font-weight="600" fill="#D0D0D0">Wi-Fi or Tailscale</text>
+  <text x="560" y="398" text-anchor="middle" font-size="16" fill="#8A8A8A">TLS with a pre-shared key from a 6-digit code</text>
+</svg>

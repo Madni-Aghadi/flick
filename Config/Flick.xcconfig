@@ -1,0 +1,8 @@
+// Signing and app identity for every target.
+// To build for your own iPhone, create Config/Local.xcconfig (git-ignored) and set:
+//   DEVELOPMENT_TEAM     your Apple developer team ID (Xcode → Settings → Accounts)
+//   FLICK_BUNDLE_PREFIX  a reverse-DNS prefix you own; bundle IDs become <prefix>.flick, <prefix>.flick.mac
+FLICK_BUNDLE_PREFIX = io.github.madni-aghadi
+DEVELOPMENT_TEAM =
+
+#include? "Local.xcconfig"

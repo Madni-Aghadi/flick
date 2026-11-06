@@ -1,0 +1,106 @@
+name: Flick
+options:
+  deploymentTarget:
+    iOS: "18.0"
+    macOS: "14.0"
+  createIntermediateGroups: true
+configFiles:
+  Debug: Config/Flick.xcconfig
+  Release: Config/Flick.xcconfig
+settings:
+  base:
+    CODE_SIGN_STYLE: Automatic
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    ENABLE_USER_SCRIPT_SANDBOXING: NO
+packages:
+  Flick:
+    path: .
+  BTHIDKit:
+    path: Vendor/BTHIDKit
+targets:
+  Flick:
+    type: application
+    platform: iOS
+    sources:
+      - path: iOS
+    dependencies:
+      - package: Flick
+        product: FlickKit
+      - package: BTHIDKit
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(FLICK_BUNDLE_PREFIX).flick
+        INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription: Flick works as a Bluetooth keyboard and mouse for your Mac.
+        PRODUCT_NAME: Flick
+        TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Flick
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIUserInterfaceStyle: Dark
+        INFOPLIST_KEY_UIStatusBarStyle: UIStatusBarStyleLightContent
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        INFOPLIST_KEY_NSLocalNetworkUsageDescription: Flick finds and connects to your Mac on this network.
+        INFOPLIST_KEY_NSMotionUsageDescription: Point the phone to move your Mac's cursor, or tilt to steer.
+        INFOPLIST_KEY_NSMicrophoneUsageDescription: Speak to Claude on your Mac.
+        INFOPLIST_KEY_NSSpeechRecognitionUsageDescription: Turns what you say into a request for your Mac.
+        INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO
+    info:
+      path: iOS/Info.plist
+      properties:
+        NSBonjourServices: [_flick._tcp, _flickpair._tcp]
+        UIBackgroundModes: [bluetooth-peripheral, bluetooth-central]
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+  FlickUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: iOSUITests
+    dependencies:
+      - target: Flick
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(FLICK_BUNDLE_PREFIX).flick.uitests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: Flick
+  FlickMac:
+    type: application
+    platform: macOS
+    sources:
+      - path: Mac/App
+    dependencies:
+      - package: Flick
+        product: FlickKit
+      - package: Flick
+        product: FlickMacCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(FLICK_BUNDLE_PREFIX).flick.mac
+        PRODUCT_NAME: Flick
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_LSUIElement: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Flick
+        INFOPLIST_KEY_NSLocalNetworkUsageDescription: Flick listens for your paired iPhone.
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.utilities
+        ENABLE_HARDENED_RUNTIME: NO
+        CODE_SIGN_ENTITLEMENTS: ""
+    info:
+      path: Mac/App/Info.plist
+      properties:
+        NSBonjourServices: [_flick._tcp, _flickpair._tcp]
+schemes:
+  Flick:
+    build:
+      targets:
+        Flick: all
+        FlickUITests: [test]
+    test:
+      targets: [FlickUITests]
+  FlickMac:
+    build:
+      targets:
+        FlickMac: all

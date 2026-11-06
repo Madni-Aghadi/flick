@@ -1,0 +1,7 @@
+Source:  https://github.com/jqssun/darwin-bt-remote
+Commit:  e64cae983b8816e7e2f067e79025ffc49faf7e2d (vendored 2026-11-04)
+License: AGPL-3.0 (LICENSE in this folder)
+
+Changes for Flick are marked "Flick:" in:
+  Sources/BTHIDKit/LowEnergy/HIDPeripheral.swift  send queue, readiness hooks, active-host check
+  Sources/BTHIDKit/LowEnergy/HIDCentral.swift     refreshKnownPeripherals made public
